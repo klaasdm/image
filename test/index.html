@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Imageviewer</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     
+        <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+         <script language="javascript" src="js/trimpath-template-1.0.38.js"></script>
+    
+        <link href="uploadify/uploadify.css" type="text/css" rel="stylesheet" />
+        <link href="css.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="uploadify/jquery.uploadify.v2.1.4.min.js"></script>
+		<script type="text/javascript" src="uploadify/swfobject.js"></script>
+		
+		
+		<script type="text/javascript" src="fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+ 		<script type="text/javascript" src="fancybox/jquery.easing-1.4.pack.js"></script>
+		<script type="text/javascript" src="fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+		<link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+		
+		 <script type="text/javascript" src="js/jquery.alphanumeric.js"></script>
+		 <script type="text/javascript" src="js/jquery.alphanumeric.js"></script>
+		 <script type="text/javascript" src="js/jquery.validate.js"></script>
+		 
+		  <script type="text/javascript" src="js/jquery.quicksearch.js"></script>
+		 <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+		 
+		    <script type="text/javascript" src="js/test.js"></script>
+		 
+    </head>
+    <body>
+		<div id="container">
+			
+	 <div id="newimage">
+			<h1>Add new image with info</h1>
+			<form  id="testform2"name="testform2">
+				
+			<label for="rating">rating: </label>
+			<input type="text" class="num tb" title="Enter a rating, numeric only allowed. No special chars"  class="required" name="rating" size="50" placeholder="rating"><br />
+			<label for="title">title: </label>	 
+			<input type="text" class="cust tb" title="Enter a title. No special chars" name="title" size="50" placeholder="Title"><br />
+			<label for="author">author: </label>	 
+			<input type="text" class="cust tb" title="Enter a author. No special chars" name="author" size="50" placeholder="Author"><br />
+			<label for="type">type: </label>	 
+			<input type="text" class="cust tb" title="Enter a type, numeric only allowed. No special chars" name="type" size="50" placeholder="Type"><br />
+			<label for="asin">asin: </label>	 
+			<input type="text" class="cust tb" title="Enter a asin number, numeric only allowed. No special chars" name="asin" size="50" placeholder="Asin"><br />
+			<label for="tag">tag: </label>	 
+			<input type="text" class="cust tb" title="Enter tags, write a comma after each tag. No special chars" name="tag" size="50" placeholder="Tag"><br />
+	 		<br />
+	 		<input type="file" id="file_upload" name="file_upload" />
+			<a href="javascript:$('#file_upload').uploadifyUpload();">Upload image</a>
+	 
+	 	</form>
+	 </div>
+	 
+	 	<textarea id="images_value_jst" style="display:none;">
+   
+    <table>
+    
+     {for t in data}
+   	 {if t != "[object Object]"}
+   	 
+      <a href="#" onClick="return false" onmousedown=javascript:imageInformation("${t}");><img src="pictures/Thumbs/${t}" /></a>
+    {/if}
+     {/for}
+    </table>
+    </textarea>
+    
+    
+   
+     <textarea id="tag_value_jst" style="display:none;">
+   
+	<form action="#"><input type="text" name="search" value="" size="15" id="id_search" placeholder="search tag" />
+	 <span class="loading">Loading...</span></form>
+   	 <table id="matrix" cellpadding="0" cellspacing="0"><thead><tr>
+	<th width="75%">.</th></tr></thead><tbody><tr id="noresults"><td colspan="6">No Results</td></tr> 
+    
+     {for t in data}
+   	 {if t != "[object Object]"}
+   	 
+
+         <tr><td>  <a href="#" onClick="return false" onmousedown=javascript:imageContent("${t}");>${t}</a></br></td>
+             </tr>
+    {/if}
+     {/for}
+     
+     </tbody>
+    </table>
+  
+     </textarea>
+     
+     	<textarea id="imageInformation_value_jst" style="display:none;">
+		
+		<a class="single_image" href="pictures/${image}"><img src="pictures/Thumbs/${image}" /></a>		
+   		 <label>${rating}</label>
+   		 <label>${title}</label>
+   		 <label>${author}</label>
+   		 <label>${type}</label>
+   		 <label>${asin}</label>
+   		<label>${tags}</label>
+   		<a  href="#" onClick="return false" onmousedown=javascript:imageInfo("${image}");>edit info</a>
+   	
+   	
+   
+    </textarea>
+	
+	
+	<textarea id="imageInfo_value_jst" style="display:none;">
+
+    <label>rating</label>
+   	 <input type="text" class="num tb" name="rating" size="30" value="${rating}" placeholder="rating"><br/>
+   	  <label>title</label>
+   	 <input type="text" class="cust tb" name="title" size="30" value="${title}" placeholder="title"><br/>
+   	  <label>author</label>
+   	 <input type="text" class="cust tb" name="author" size="30" value="${author}" placeholder="author"><br/>
+   	  <label>type</label>
+   	 <input type="text" class="cust tb" name="type" size="30" value="${type}" placeholder="type"><br/>
+   	 <label>asin</label>
+   	 <input type="text" class="cust tb" name="asin" size="30" value="${asin}" placeholder="asin"><br/>
+   	 <label>tag</label>
+   	 <input type="text" class="cust tb" name="tag" size="30" value="${tags}" placeholder="tag"><br/>
+	<a href="#" onClick="return false" onmousedown=javascript:submitInfo("submit");>submit</a>	
+   	
+   	
+   
+    </textarea>
+	
+		 <div id="content">
+		 	
+		 	<label>test</label>
+		 </div>
+		<div id="galleryheader"></div>
+		<div id="tools">
+
+		</div>
+     
+     
+     
+     	<div id="images">
+     	
+     	</div>
+     	<div id="imageInformation">
+     		
+     		
+     		
+     		
+     	</div>
+     		<form  id="testform"name="testform">
+     	<div id="imageInfo">
+     
+     	<div id="imagesCountpic"></div>
+     	<div id="imagesCount"></div>
+     	<div id="imageInformationLabel"><label>Information</label></div>
+     	
+  </form>
+    <div style="clear: both;"></div>
+ 
+	</div>
+
+    </body>
+</html>
