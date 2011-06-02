@@ -129,13 +129,12 @@ if($edit_value != "") {
 $csv2 = new parseCSV();
 $csv2 -> auto('_books.csv');
 
-	
-	foreach($csv2->data as $value) {
+foreach($csv2->data as $value) {
 		$id4++;
 		
-		if($value['image'] == $edit_value["0"]['image']){
+		if($value['image'] == $edit_value['image']){
 			
-			$csv2->data[$id4++] = array('id' => $id4++,'rating' => $edit_value["0"]['rating'], 'title' => $edit_value["0"]['title'], 'author' => $edit_value["0"]['author'], 'type' => $edit_value["0"]['type'], 'asin' => $edit_value["0"]['asin'], 'tags' => $edit_value["0"]['tags'], 'image' => $edit_value["0"]['image']);
+			$csv2->data[$id4++] = array('id' => $id4++,'rating' => $edit_value['rating'], 'title' => $edit_value['title'], 'author' => $edit_value['author'], 'type' => $edit_value['type'], 'asin' => $edit_value['asin'], 'tags' => $edit_value['tags'], 'image' => $edit_value['image']);
 			$csv2->save();
 		}
 			
