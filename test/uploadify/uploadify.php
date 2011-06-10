@@ -87,15 +87,15 @@ if($bool){
     switch(strtolower(substr($targetFile, -3))){
         case "jpg":
             header("Content-Type: image/jpeg");
-            $bool2 = imagejpeg($picture,$targetPath."Thumbs/".$newFileName,80);
+            $bool2 = imagejpeg($picture,$targetPath."thumbs/".$newFileName,80);
         break;
         case "png":
             header("Content-Type: image/png");
-            imagepng($picture,$targetPath."Thumbs/".$newFileName);
+            imagepng($picture,$targetPath."thumbs/".$newFileName);
         break;
         case "gif":
             header("Content-Type: image/gif");
-            imagegif($picture,$targetPath."Thumbs/".$newFileName);
+            imagegif($picture,$targetPath."thumbs/".$newFileName);
         break;
     }
 }
